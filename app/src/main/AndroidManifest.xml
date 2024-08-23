@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".core.BaseApp"
@@ -13,12 +15,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication"
+        android:theme="@style/Theme.Movies"
         tools:targetApi="31">
         <activity
-            android:name=".SplashActivity"
+            android:name=".modules.splash.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.Movies">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,10 +29,14 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".modules.common_views.base.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.Movies">
         </activity>
+
+        <activity
+            android:name=".modules.common_views.nointernet.NoInternetActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

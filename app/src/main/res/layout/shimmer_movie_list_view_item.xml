@@ -1,0 +1,43 @@
+<com.facebook.shimmer.ShimmerFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shimmer_layout"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:padding="@dimen/_8sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_8sdp"
+            android:textSize="@dimen/_14ssp"
+            android:background="@drawable/shimmer_view_radius"
+            android:backgroundTint="@color/color_dark_grey"
+            android:id="@+id/tv_currency_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_8sdp"
+            android:textSize="@dimen/_14ssp"
+            android:id="@+id/tv_rate_value"
+            android:background="@drawable/shimmer_view_radius"
+            android:backgroundTint="@color/color_dark_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_currency_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_currency_name"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_currency_name"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.facebook.shimmer.ShimmerFrameLayout>

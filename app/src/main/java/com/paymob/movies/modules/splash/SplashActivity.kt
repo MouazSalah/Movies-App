@@ -1,15 +1,16 @@
-package com.paymob.movies
+package com.paymob.movies.modules.splash
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.lifecycleScope
+import com.paymob.movies.R
+import com.paymob.movies.modules.common_views.base.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class SplashActivity : ComponentActivity() {

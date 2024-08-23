@@ -1,0 +1,73 @@
+<?xml
+    version="1.0"
+    encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    app:cardBackgroundColor="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/_12sdp"
+        android:background="@drawable/corner_top_radius_shape_8"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/_8sdp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:src="@drawable/img_server_error" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:textStyle="bold"
+                android:text="Oops! Something went wrong."
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/color_primary"
+                android:textSize="@dimen/_15ssp"
+                android:textAlignment="center"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We couldn't fetch the currency rates at the moment. Please check your internet connection and try again later."
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginHorizontal="12dp"
+                android:textColor="@color/color_dark_grey"
+                android:textSize="@dimen/_13ssp"
+                android:textAlignment="center"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_ok"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:fontFamily="@font/roboto_bold"
+                app:strokeColor="@color/color_bank_masr"
+                android:text="Ok"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:textColor="@color/color_bank_masr"
+                app:cornerRadius="@dimen/_4sdp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:textSize="@dimen/_14ssp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -32,6 +32,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -43,11 +44,38 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
+        buildConfig = true
     }
 
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+
+    flavorDimensions("default") // Define the flavor dimension
+    productFlavors {
+        create("staging") {
+            dimension = "default" // Assign the flavor to the dimension
+            applicationId = "com.paymob.movies.staging"
+            resValue("string", "app_name", "Movies Staging")
+
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/movie/\"")
+            buildConfigField("String", "BASE_IMAGES_URL", "\"https://image.tmdb.org/t/p/original\"")
+            buildConfigField("String", "API_KEY", "\"169edd5ba67dab5a976067e49fad78d0\"")
+            buildConfigField("String", "API_ACCESS_TOKEN", "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjllZGQ1YmE2N2RhYjVhOTc2MDY3ZTQ5ZmFkNzhkMCIsIm5iZiI6MTcyNDMwODYyOC4wMTc5ODUsInN1YiI6IjVkZmI4ZjI4ZDFhODkzMDAxMjgyYzNjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3s1nhqNGiwW_izq8fe9tlLBPSqlhGt9UwA4HuElOUmE\"")
+        }
+
+        create("production") {
+            dimension = "default" // Assign the flavor to the dimension
+            applicationId = "com.paymob.movies"
+            resValue("string", "app_name", "Movies")
+
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/movie/\"")
+            buildConfigField("String", "BASE_IMAGES_URL", "\"https://image.tmdb.org/t/p/original\"")
+            buildConfigField("String", "API_KEY", "\"169edd5ba67dab5a976067e49fad78d0\"")
+            buildConfigField("String", "API_ACCESS_TOKEN", "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjllZGQ1YmE2N2RhYjVhOTc2MDY3ZTQ5ZmFkNzhkMCIsIm5iZiI6MTcyNDMwODYyOC4wMTc5ODUsInN1YiI6IjVkZmI4ZjI4ZDFhODkzMDAxMjgyYzNjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3s1nhqNGiwW_izq8fe9tlLBPSqlhGt9UwA4HuElOUmE\"")
         }
     }
 }
@@ -120,10 +148,23 @@ dependencies {
     implementation(libs.coroutinesCore)
     implementation(libs.serializationJson)
     implementation(libs.gson)
-    implementation(libs.roomRuntime)
-    implementation(libs.roomKtx)
+
     implementation(libs.glide)
     implementation(libs.roundedImageView)
     implementation(libs.lifecycleLivedataKtx)
     implementation(libs.lifecycleViewmodelKtx)
+
+    //Chuck
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    implementation(libs.roomRuntime)
+    implementation(libs.roomKtx)
+
+    implementation("androidx.fragment:fragment-ktx:1.5.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.0")
+    ksp("androidx.room:room-compiler:2.5.2")
 }
