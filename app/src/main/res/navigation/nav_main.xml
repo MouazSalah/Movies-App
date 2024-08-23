@@ -21,5 +21,9 @@
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="com.paymob.movies.modules.details.presentation.MovieDetailsFragment"
-        android:label="MovieDetailsFragment" />
+        android:label="MovieDetailsFragment" >
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

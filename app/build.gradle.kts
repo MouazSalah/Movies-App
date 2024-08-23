@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.safeArgs)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.serialization)
@@ -48,13 +49,8 @@ android {
         buildConfig = true
     }
 
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 
-    flavorDimensions("default") // Define the flavor dimension
+    flavorDimensions.add("default") // Define the flavor dimension
     productFlavors {
         create("staging") {
             dimension = "default" // Assign the flavor to the dimension
@@ -78,6 +74,7 @@ android {
             buildConfigField("String", "API_ACCESS_TOKEN", "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjllZGQ1YmE2N2RhYjVhOTc2MDY3ZTQ5ZmFkNzhkMCIsIm5iZiI6MTcyNDMwODYyOC4wMTc5ODUsInN1YiI6IjVkZmI4ZjI4ZDFhODkzMDAxMjgyYzNjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3s1nhqNGiwW_izq8fe9tlLBPSqlhGt9UwA4HuElOUmE\"")
         }
     }
+
 }
 
 dependencies {

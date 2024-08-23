@@ -1,27 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
     android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_movie_id"
-        android:fontFamily="@font/roboto_bold"
-        android:textSize="@dimen/_22ssp"
-        tools:text="Movie ID \n 3674"
-        android:textAlignment="center"
-        android:lineSpacingExtra="@dimen/_6sdp"
-        android:textColor="@color/color_primary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Movie Poster -->
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewPoster"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:contentDescription="Movie Poster Description"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            app:layout_constraintDimensionRatio="H,1:1"
+            android:src="@drawable/ic_paymop_logo" />
+
+        <!-- Movie Title -->
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Between Us"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_primary"
+            android:layout_marginTop="16dp" />
+
+        <!-- Movie Overview -->
+        <TextView
+            android:id="@+id/textViewOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_primary"
+            android:text="Overview: Elodie and Laetitia live in close love and dream of having a child..."
+            android:layout_marginTop="16dp" />
+
+        <!-- Movie Release Date -->
+        <TextView
+            android:id="@+id/textViewReleaseDate"
+            android:layout_width="match_parent"
+            android:textColor="@color/color_primary"
+            android:layout_height="wrap_content"
+            android:text="Release Date: 2023-07-12"
+            android:layout_marginTop="8dp" />
+
+        <!-- Movie Genres -->
+        <TextView
+            android:id="@+id/textViewGenres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Genres: Drama"
+            android:textColor="@color/color_primary"
+            android:layout_marginTop="8dp" />
+
+        <!-- Movie Runtime -->
+        <TextView
+            android:id="@+id/textViewRuntime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_primary"
+            android:text="Runtime: 90 minutes"
+            android:layout_marginTop="8dp" />
+
+        <!-- Movie IMDb Rating -->
+        <TextView
+            android:id="@+id/textViewIMDbRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_primary"
+            android:text="IMDb Rating: 6.2"
+            android:layout_marginTop="8dp" />
+
+        <!-- Movie Production Companies -->
+        <TextView
+            android:id="@+id/textViewProductionCompanies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_primary"
+            android:text="Production Companies: CB Partners"
+            android:layout_marginTop="8dp" />
+
+        <!-- Movie Production Countries -->
+        <TextView
+            android:id="@+id/textViewProductionCountries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_primary"
+            android:text="Production Countries: France"
+            android:layout_marginTop="8dp" />
+
+        <!-- Movie Status -->
+        <TextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status: Released"
+            android:textColor="@color/color_primary"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

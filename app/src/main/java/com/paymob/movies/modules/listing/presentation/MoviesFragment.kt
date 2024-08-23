@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -29,7 +30,8 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>() {
 
         },
         onMovieClicked = { movieEntity ->
-                Toast.makeText(BaseApp.instance.baseContext, "${movieEntity.movieName} is clicked!", Toast.LENGTH_LONG).show()
+             val movieDetailsAction = MoviesFragmentDirections.actionToMovieDetails(movieEntity.id)
+             findNavController().navigate(movieDetailsAction)
         },
     ) }
 
@@ -47,6 +49,13 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>() {
     override fun onFragmentReady() {
         initViews()
         initObservers()
+
+        setFragmentResultListener("movie_details_request_key") { requestKey, bundle ->
+            if (requestKey == "movie_details_request_key") {
+                val resultValue = bundle.getBoolean("isFavoriteStateChanged")
+                Toast.makeText(BaseApp.instance.baseContext, "value: $resultValue", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun initObservers() {
