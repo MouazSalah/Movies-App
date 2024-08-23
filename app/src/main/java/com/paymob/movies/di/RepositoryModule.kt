@@ -1,5 +1,6 @@
 package com.paymob.movies.di
 
+import com.paymob.movies.db.local.datastore.DataStoreManager
 import com.paymob.movies.db.local.room.MoviesDao
 import com.paymob.movies.modules.listing.data.api.MoviesWebServices
 import com.paymob.movies.modules.listing.data.datastore.local.IMoviesLocalDataSource
@@ -31,7 +32,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideMoviesRepository(localDataSource: MoviesLocalDataSourceImpl,
-                                remoteDataSource: MoviesRemoteDataSourceImpl
+                                remoteDataSource: MoviesRemoteDataSourceImpl,
+                                dataStoreManager: DataStoreManager
     ) :
-            IMoviesRepository = MoviesRepositoryImpl(localDataSource, remoteDataSource)
+            IMoviesRepository = MoviesRepositoryImpl(localDataSource, remoteDataSource, dataStoreManager)
 }

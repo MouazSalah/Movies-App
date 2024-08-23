@@ -7,10 +7,10 @@ import com.paymob.movies.modules.listing.domain.entites.MoviesListingEntity
 
 object MoviesListingMapper {
 
-    fun mapMoviesResponseToEntities(response : MoviesResponse) : MoviesListingEntity {
+    fun mapMoviesResponseToEntities(response : MoviesResponse, moviesIds : List<String>) : MoviesListingEntity {
         val entity = MoviesListingEntity()
 
-        val items : ArrayList<MovieEntity> = mapMoviesToEntities(response.movies);
+        val items : ArrayList<MovieEntity> = mapMoviesToEntities(response.movies, moviesIds);
 
         entity.pageIndex = response.page
         entity.movies = items
@@ -21,7 +21,7 @@ object MoviesListingMapper {
         return entity
     }
 
-    private fun mapMoviesToEntities(items: List<MovieResponseItem?>?) : ArrayList<MovieEntity> {
+    private fun mapMoviesToEntities(items: List<MovieResponseItem?>?, moviesIds : List<String>) : ArrayList<MovieEntity> {
         val entities = arrayListOf<MovieEntity>()
         items?.forEach { model ->
             val item = MovieEntity(
@@ -30,7 +30,7 @@ object MoviesListingMapper {
                 moviePoster = model?.posterPath ?: "",
                 rating = model?.voteAverage ?: 5f,
                 releaseDate = model?.releaseDate ?: "",
-                isFavorite = false,
+                isFavorite = moviesIds.contains(model?.id.toString()),
             )
 
             entities.add(item);

@@ -8,5 +8,9 @@ sealed class MovieDetailsState {
     data class Success(val movieDetails: MovieDetailsEntity) : MovieDetailsState()
 
     data class ApiError(val date: String) : MovieDetailsState()
+
+    data object WishlistToggleStateSuccess : MovieDetailsState()
+    data class WishlistError(val errorMessage: String) : MovieDetailsState()
+
     data object InternetError : MovieDetailsState()
 }

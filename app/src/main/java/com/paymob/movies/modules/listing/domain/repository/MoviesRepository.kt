@@ -3,6 +3,7 @@ package com.paymob.movies.modules.listing.domain.repository
 import com.paymob.movies.core.BaseApp
 import com.paymob.movies.extesnion.isNetworkAvailable
 import com.paymob.movies.db.api.ApiResult
+import com.paymob.movies.db.local.datastore.DataStoreManager
 import com.paymob.movies.modules.listing.data.datastore.local.IMoviesLocalDataSource
 import com.paymob.movies.modules.listing.data.datastore.remote.IMoviesRemoteDataSource
 import com.paymob.movies.modules.listing.data.params.MoviesListingParams
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 class MoviesRepositoryImpl @Inject constructor(
     private val localDataSource: IMoviesLocalDataSource,
-    private val remoteDataSource: IMoviesRemoteDataSource
+    private val remoteDataSource: IMoviesRemoteDataSource,
+    private val dataStoreManager: DataStoreManager
 ) : IMoviesRepository {
 
 
@@ -36,7 +38,8 @@ class MoviesRepositoryImpl @Inject constructor(
 
                 if (response.isSuccessful) {
                     response.body()?.let { moviesResponse ->
-                        val moviesEntities : MoviesListingEntity = MoviesListingMapper.mapMoviesResponseToEntities(moviesResponse)
+                        val wishlistIds : List<String> = dataStoreManager.getWishlistList()
+                        val moviesEntities : MoviesListingEntity = MoviesListingMapper.mapMoviesResponseToEntities(moviesResponse, wishlistIds)
                         insertMoviesToLocalStorage(moviesEntities)
                         ApiResult.Success(moviesEntities)
                     } ?: run {

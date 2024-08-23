@@ -5,7 +5,7 @@ import com.paymob.movies.modules.details.domain.entity.MovieDetailsEntity
 
 object MovieDetailsMapper {
 
-    fun mapMovieDetailsToEntity(response : MovieDetailsResponse) : MovieDetailsEntity {
+    fun mapMovieDetailsToEntity(response : MovieDetailsResponse, moviesIds : List<String>) : MovieDetailsEntity {
         return MovieDetailsEntity(
             id = response.id,
             name = response.originalTitle,
@@ -28,7 +28,7 @@ object MovieDetailsMapper {
                 ?.joinToString(", ")
                 ?: "",
             rating = 3.5,
-            isWishlist = false
+            isWishlist = moviesIds.contains(response.id.toString())
         )
     }
 }

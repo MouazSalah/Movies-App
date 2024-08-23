@@ -151,6 +151,8 @@ dependencies {
     implementation(libs.lifecycleLivedataKtx)
     implementation(libs.lifecycleViewmodelKtx)
 
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     //Chuck
     debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")

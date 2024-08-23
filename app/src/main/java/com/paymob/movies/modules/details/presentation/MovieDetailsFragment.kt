@@ -3,6 +3,7 @@ package com.paymob.movies.modules.details.presentation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.paymob.movies.BuildConfig
 import com.paymob.movies.R
 import com.paymob.movies.databinding.FragmentMovieDetailsBinding
+import com.paymob.movies.extesnion.showLogMessage
 import com.paymob.movies.modules.common_views.base.MainActivity
 import com.paymob.movies.modules.details.domain.entity.MovieDetailsEntity
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,8 +50,11 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>()
                     is MovieDetailsState.Success -> {
                         fillMovieDetailsToViews(state.movieDetails)
                     }
-                    is MovieDetailsState.Shimmer -> {
-
+                    is MovieDetailsState.WishlistToggleStateSuccess -> {
+                        toggleWishlistIcon()
+                    }
+                    is MovieDetailsState.WishlistError -> {
+                        Toast.makeText(this@MovieDetailsFragment.context, state.errorMessage, Toast.LENGTH_LONG).show()
                     }
                     is MovieDetailsState.Loading -> {
                         castToActivity<MainActivity> { activity ->
@@ -62,6 +67,15 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>()
                 }
             }
         }
+    }
+    private fun toggleWishlistIcon() {
+        binding.imgWishlist.setImageResource(
+            if (viewModel.isWishlist) {
+                R.drawable.ic_wishlist_selected
+            } else {
+                R.drawable.ic_wishlist_unselected
+            }
+        )
     }
 
     private fun fillMovieDetailsToViews(movieDetails : MovieDetailsEntity) {
@@ -76,7 +90,7 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>()
             textViewOverview.text = movieDetails.overview
 
             imgWishlist.setImageResource(
-                if (movieDetails.isWishlist) {
+                if (viewModel.isWishlist) {
                     R.drawable.ic_wishlist_selected
                 } else {
                     R.drawable.ic_wishlist_unselected
@@ -104,7 +118,7 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>()
         binding.apply {
 
             imgWishlist.setOnClickListener {
-
+                viewModel.toggleFavoriteStatus()
             }
 
             castToActivity<MainActivity> {
@@ -126,7 +140,8 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>()
 
     private fun whenBackButtonClicked() {
         val result = Bundle().apply {
-            putBoolean("isFavoriteStateChanged", false)
+            putBoolean("isFavoriteStateChanged", viewModel.movieDetails.isWishlist != viewModel.isWishlist)
+            putString("movie_id", viewModel.movieDetails.id.toString())
         }
         setFragmentResult("movie_details_request_key", result)
         findNavController().popBackStack()

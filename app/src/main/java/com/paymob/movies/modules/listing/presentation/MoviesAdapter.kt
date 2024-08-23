@@ -9,7 +9,8 @@ import com.paymob.movies.databinding.MovieListViewItemBinding
 import com.paymob.movies.modules.common_views.base.BaseAdapter
 import com.paymob.movies.modules.listing.domain.entites.MovieEntity
 
-class MoviesAdapter(private val onMovieClicked: (MovieEntity) -> Unit, private val loadNewPage: () -> Unit) : BaseAdapter<MovieListViewItemBinding, MovieEntity>() {
+class MoviesAdapter(private val onMovieClicked: (MovieEntity) -> Unit,
+                    private val onWishlistClicked: (MovieEntity) -> Unit) : BaseAdapter<MovieListViewItemBinding, MovieEntity>() {
     override fun createBinding(parent: ViewGroup, viewType: Int) = MovieListViewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
     override fun bind(binding: MovieListViewItemBinding, position: Int) {
@@ -28,17 +29,17 @@ class MoviesAdapter(private val onMovieClicked: (MovieEntity) -> Unit, private v
                 onMovieClicked.invoke(currentItem)
             }
 
-            if(currentItem.isFavorite)
-            {
-                binding.favoriteIcon.setImageResource(R.drawable.ic_wishlist_selected)
-            }
-            else {
-                binding.favoriteIcon.setImageResource(R.drawable.ic_wishlist_unselected)
+            binding.favoriteIcon.setOnClickListener {
+                onWishlistClicked.invoke(currentItem)
             }
 
-            if (position >= currentList.size - 2) {
-                loadNewPage.invoke()
-            }
+            binding.favoriteIcon.setImageResource(
+                if (currentItem.isFavorite) {
+                    R.drawable.ic_wishlist_selected
+                } else {
+                    R.drawable.ic_wishlist_unselected
+                }
+            )
         }
     }
 }

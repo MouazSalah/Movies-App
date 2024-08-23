@@ -7,6 +7,8 @@ sealed class MoviesListingState {
     data class Loading(var isShow: Boolean) : MoviesListingState()
     data class Success(val movies: ArrayList<MovieEntity>) : MoviesListingState()
 
+    data class WishlistError(val errorMessage: String) : MoviesListingState()
+
     data class ApiError(val date: String) : MoviesListingState()
     data object InternetError : MoviesListingState()
 }

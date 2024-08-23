@@ -3,6 +3,7 @@ package com.paymob.movies.modules.details.data.repository
 import com.paymob.movies.core.BaseApp
 import com.paymob.movies.extesnion.isNetworkAvailable
 import com.paymob.movies.db.api.ApiResult
+import com.paymob.movies.db.local.datastore.DataStoreManager
 import com.paymob.movies.modules.details.data.api.MovieDetailsWebServices
 import com.paymob.movies.modules.details.data.mapper.MovieDetailsMapper
 import com.paymob.movies.modules.details.data.params.MovieDetailsParams
@@ -11,7 +12,8 @@ import com.paymob.movies.modules.details.domain.repository.IMovieDetailsReposito
 import javax.inject.Inject
 
 class MovieDetailsRepositoryImpl @Inject constructor(
-    private val apiInterface: MovieDetailsWebServices
+    private val apiInterface: MovieDetailsWebServices,
+    private val dataStoreManager: DataStoreManager
 ) : IMovieDetailsRepository {
 
     override suspend fun getMovieDetails(params: MovieDetailsParams): ApiResult<MovieDetailsEntity> {
@@ -21,7 +23,8 @@ class MovieDetailsRepositoryImpl @Inject constructor(
 
                 if (response.isSuccessful) {
                     response.body()?.let { movieDetailsResponse ->
-                        val moviesEntities : MovieDetailsEntity = MovieDetailsMapper.mapMovieDetailsToEntity(movieDetailsResponse)
+                        val wishlistIds : List<String> = dataStoreManager.getWishlistList()
+                        val moviesEntities : MovieDetailsEntity = MovieDetailsMapper.mapMovieDetailsToEntity(movieDetailsResponse, wishlistIds)
                         ApiResult.Success(moviesEntities)
                     } ?: run {
                         ApiResult.ApiError("${response.code()} - ${response.message()}")

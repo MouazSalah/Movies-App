@@ -15,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.paymob.movies.modules.common_views.apierror.BottomSheetServerError
 import com.paymob.movies.extesnion.castToActivity
 import com.banquemisr.currency.ui.ui.base.BaseFragment
-import com.paymob.movies.core.BaseApp
 import com.paymob.movies.modules.common_views.base.MainActivity
 import com.paymob.movies.modules.common_views.nointernet.NoInternetActivity
 import com.paymob.movies.databinding.FragmentMoviesBinding
@@ -25,13 +24,13 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class MoviesFragment : BaseFragment<FragmentMoviesBinding>() {
 
-    private val moviesAdapter by lazy { MoviesAdapter(
-        loadNewPage = {
-
-        },
+    private val moviesAdapter by  lazy { MoviesAdapter(
         onMovieClicked = { movieEntity ->
              val movieDetailsAction = MoviesFragmentDirections.actionToMovieDetails(movieEntity.id)
              findNavController().navigate(movieDetailsAction)
+        },
+        onWishlistClicked = { movieEntity ->
+            viewModel.toggleFavoriteStatus(movieEntity)
         },
     ) }
 
@@ -52,8 +51,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>() {
 
         setFragmentResultListener("movie_details_request_key") { requestKey, bundle ->
             if (requestKey == "movie_details_request_key") {
-                val resultValue = bundle.getBoolean("isFavoriteStateChanged")
-                Toast.makeText(BaseApp.instance.baseContext, "value: $resultValue", Toast.LENGTH_LONG).show()
+                viewModel.updateMoviesList()
             }
         }
     }
@@ -72,6 +70,9 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>() {
                     MoviesListingState.InternetError -> {
                         val intent = Intent(requireActivity(), NoInternetActivity::class.java)
                         noInternetForResultActivity.launch(intent)
+                    }
+                    is MoviesListingState.WishlistError -> {
+                        Toast.makeText(this@MoviesFragment.context, state.errorMessage, Toast.LENGTH_LONG).show()
                     }
                     is MoviesListingState.Shimmer -> {
                         binding.shimmerLayout.isVisible = false;
