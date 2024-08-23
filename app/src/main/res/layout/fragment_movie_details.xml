@@ -27,16 +27,27 @@
             app:layout_constraintDimensionRatio="H,1:1"
             android:src="@drawable/ic_paymop_logo" />
 
+        <!-- Favorite Icon -->
+        <ImageView
+            android:id="@+id/img_wishlist"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:contentDescription="Favorite Icon"
+            app:srcCompat="@drawable/ic_wishlist_unselected" />
+
         <!-- Movie Title -->
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Between Us"
-            android:textSize="24sp"
+            tools:text="Between Us"
+            android:textSize="@dimen/_20ssp"
             android:textStyle="bold"
             android:textColor="@color/color_primary"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="@dimen/_8sdp" />
 
         <!-- Movie Overview -->
         <TextView
@@ -44,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/color_primary"
-            android:text="Overview: Elodie and Laetitia live in close love and dream of having a child..."
+            tools:text="Overview: Elodie and Laetitia live in close love and dream of having a child..."
             android:layout_marginTop="16dp" />
 
         <!-- Movie Release Date -->
@@ -53,7 +64,7 @@
             android:layout_width="match_parent"
             android:textColor="@color/color_primary"
             android:layout_height="wrap_content"
-            android:text="Release Date: 2023-07-12"
+            tools:text="Release Date: 2023-07-12"
             android:layout_marginTop="8dp" />
 
         <!-- Movie Genres -->
@@ -61,7 +72,7 @@
             android:id="@+id/textViewGenres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Genres: Drama"
+            tools:text="Genres: Drama"
             android:textColor="@color/color_primary"
             android:layout_marginTop="8dp" />
 
@@ -71,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/color_primary"
-            android:text="Runtime: 90 minutes"
+            tools:text="Runtime: 90 minutes"
             android:layout_marginTop="8dp" />
 
         <!-- Movie IMDb Rating -->
@@ -80,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/color_primary"
-            android:text="IMDb Rating: 6.2"
+            tools:text="IMDb Rating: 6.2"
             android:layout_marginTop="8dp" />
 
         <!-- Movie Production Companies -->
@@ -89,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/color_primary"
-            android:text="Production Companies: CB Partners"
+            tools:text="Production Companies: CB Partners"
             android:layout_marginTop="8dp" />
 
         <!-- Movie Production Countries -->
@@ -98,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/color_primary"
-            android:text="Production Countries: France"
+            tools:text="Production Countries: France"
             android:layout_marginTop="8dp" />
 
         <!-- Movie Status -->
@@ -106,7 +117,7 @@
             android:id="@+id/textViewStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status: Released"
+            tools:text="Status: Released"
             android:textColor="@color/color_primary"
             android:layout_marginTop="8dp" />
 

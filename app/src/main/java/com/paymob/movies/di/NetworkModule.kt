@@ -67,11 +67,10 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAuthApiService(@DIAnnotation.MoviesRetrofit retrofit: Retrofit): MoviesWebServices = retrofit.create(
-        MoviesWebServices::class.java)
+    fun provideMoviesWebService(@DIAnnotation.MoviesRetrofit retrofit: Retrofit): MoviesWebServices = retrofit.create(MoviesWebServices::class.java)
 
     @DIAnnotation.MoviesInterceptor
     @Singleton
     @Provides
-    fun provideCurrencyInterceptor(): MoviesInterceptor = MoviesInterceptor()
+    fun provideMoviesInterceptor(): MoviesInterceptor = MoviesInterceptor()
 }
