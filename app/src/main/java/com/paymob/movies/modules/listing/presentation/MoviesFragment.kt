@@ -14,7 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.paymob.movies.modules.common_views.apierror.BottomSheetServerError
 import com.paymob.movies.extesnion.castToActivity
-import com.banquemisr.currency.ui.ui.base.BaseFragment
+import com.paymob.movies.modules.common_views.base.BaseFragment
+import com.paymob.movies.R
 import com.paymob.movies.modules.common_views.base.MainActivity
 import com.paymob.movies.modules.common_views.nointernet.NoInternetActivity
 import com.paymob.movies.databinding.FragmentMoviesBinding
@@ -75,7 +76,7 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>() {
                         Toast.makeText(this@MoviesFragment.context, state.errorMessage, Toast.LENGTH_LONG).show()
                     }
                     is MoviesListingState.Shimmer -> {
-                        binding.shimmerLayout.isVisible = false;
+                        binding.shimmerLayout.isVisible = state.isShow
                     }
                     is MoviesListingState.Loading -> {
                         binding.progressCircular.isVisible = state.isShow
@@ -91,13 +92,12 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding>() {
 
             rvMovies.adapter = moviesAdapter
 
-            castToActivity<MainActivity> {
+            castToActivity<MainActivity> { activity ->
 
-                it?.mBinding?.apply {
-                    clToolbar.isVisible = true
-                    tvTitle.text = "Popular Movies"
-                    btnBack.isVisible = false
-                }
+                activity?.setToolbarTitle(getString(R.string.popular_movies))
+
+                activity?.showToolbar(true)
+                activity?.showBackBtn(false)
             }
         }
 

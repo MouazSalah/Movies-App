@@ -4,6 +4,7 @@ import com.paymob.movies.core.BaseApp
 import com.paymob.movies.extesnion.isNetworkAvailable
 import com.paymob.movies.db.api.ApiResult
 import com.paymob.movies.db.local.datastore.DataStoreManager
+import com.paymob.movies.extesnion.showLogMessage
 import com.paymob.movies.modules.listing.data.datastore.local.IMoviesLocalDataSource
 import com.paymob.movies.modules.listing.data.datastore.remote.IMoviesRemoteDataSource
 import com.paymob.movies.modules.listing.data.params.MoviesListingParams

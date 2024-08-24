@@ -4,8 +4,8 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.paymob.movies.BuildConfig
+import com.paymob.movies.core.DIAnnotation
 import com.paymob.movies.db.api.MoviesInterceptor
-import com.paymob.movies.modules.listing.data.api.MoviesWebServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +20,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+class RetrofitModule {
 
     @DIAnnotation.MoviesRetrofit
     @Singleton
@@ -64,10 +64,6 @@ class NetworkModule {
     fun provideLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
-
-    @Singleton
-    @Provides
-    fun provideMoviesWebService(@DIAnnotation.MoviesRetrofit retrofit: Retrofit): MoviesWebServices = retrofit.create(MoviesWebServices::class.java)
 
     @DIAnnotation.MoviesInterceptor
     @Singleton

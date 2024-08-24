@@ -1,4 +1,4 @@
-package com.paymob.movies.di
+package com.paymob.movies.core
 
 import javax.inject.Qualifier
 

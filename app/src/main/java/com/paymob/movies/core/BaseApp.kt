@@ -24,5 +24,4 @@ class BaseApp : Application() {
         instance = this
         initTimber()
     }
-
 }

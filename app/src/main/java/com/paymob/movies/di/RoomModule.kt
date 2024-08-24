@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class LocalDataBaseModule {
+class RoomModule {
 
     companion object {
         private const val DATA_BASE_NAME = "IMDB_Movies_database"

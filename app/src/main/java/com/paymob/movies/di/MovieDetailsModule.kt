@@ -1,5 +1,6 @@
 package com.paymob.movies.di
 
+import com.paymob.movies.core.DIAnnotation
 import com.paymob.movies.db.local.datastore.DataStoreManager
 import com.paymob.movies.modules.details.data.api.MovieDetailsWebServices
 import com.paymob.movies.modules.details.data.repository.MovieDetailsRepositoryImpl

@@ -23,6 +23,7 @@ class MoviesAdapter(private val onMovieClicked: (MovieEntity) -> Unit,
 
             Glide.with(imageViewPoster.context)
                 .load("${BuildConfig.BASE_IMAGES_URL}${currentItem.moviePoster}")
+                .error(R.drawable.ic_paymop_logo)
                 .into(imageViewPoster)
 
             binding.layoutRoot.setOnClickListener {

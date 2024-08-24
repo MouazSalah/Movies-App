@@ -4,16 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.paymob.movies.db.api.ApiResult
 import com.paymob.movies.db.local.datastore.DataStoreManager
-import com.paymob.movies.extesnion.showLogMessage
 import com.paymob.movies.modules.details.data.params.MovieDetailsParams
 import com.paymob.movies.modules.details.domain.entity.MovieDetailsEntity
 import com.paymob.movies.modules.details.domain.usecases.MovieDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel

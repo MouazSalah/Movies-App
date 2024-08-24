@@ -7,7 +7,7 @@ import retrofit2.http.*
 interface MovieDetailsWebServices {
 
     companion object {
-        private const val GET_MOVIE_DETAILS = "{movieId}" // category can be ( popular - top_rated - upcoming - now_playing )
+        private const val GET_MOVIE_DETAILS = "{movieId}"
     }
 
     @GET(GET_MOVIE_DETAILS)

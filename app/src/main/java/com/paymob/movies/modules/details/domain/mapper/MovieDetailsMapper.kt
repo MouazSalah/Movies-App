@@ -1,4 +1,4 @@
-package com.paymob.movies.modules.details.data.mapper
+package com.paymob.movies.modules.details.domain.mapper
 
 import com.paymob.movies.modules.details.data.models.MovieDetailsResponse
 import com.paymob.movies.modules.details.domain.entity.MovieDetailsEntity

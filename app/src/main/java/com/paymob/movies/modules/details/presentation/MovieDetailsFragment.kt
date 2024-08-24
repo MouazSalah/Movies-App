@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
-import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,12 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.paymob.movies.modules.common_views.apierror.BottomSheetServerError
 import com.paymob.movies.extesnion.castToActivity
-import com.banquemisr.currency.ui.ui.base.BaseFragment
+import com.paymob.movies.modules.common_views.base.BaseFragment
 import com.bumptech.glide.Glide
 import com.paymob.movies.BuildConfig
 import com.paymob.movies.R
 import com.paymob.movies.databinding.FragmentMovieDetailsBinding
-import com.paymob.movies.extesnion.showLogMessage
 import com.paymob.movies.modules.common_views.base.MainActivity
 import com.paymob.movies.modules.details.domain.entity.MovieDetailsEntity
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,7 +56,7 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>()
                     }
                     is MovieDetailsState.Loading -> {
                         castToActivity<MainActivity> { activity ->
-                            activity?.mBinding?.progressBar?.isVisible = state.isShow
+                            activity?.showProgress(state.isShow)
                         }
                     }
                     else -> {
@@ -121,16 +119,18 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>()
                 viewModel.toggleFavoriteStatus()
             }
 
-            castToActivity<MainActivity> {
+            castToActivity<MainActivity> { activity ->
 
-                it?.mBinding?.apply {
-                    clToolbar.isVisible = true
-                    tvTitle.text = getString(R.string.movie_details)
-                    btnBack.isVisible = false
+                activity?.setToolbarTitle(getString(R.string.movie_details))
+
+                activity?.showToolbar(true)
+                activity?.showBackBtn(true)
+
+                activity?.mBinding?.btnBack?.setOnClickListener {
+                    whenBackButtonClicked()
                 }
             }
         }
-
 
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             whenBackButtonClicked()

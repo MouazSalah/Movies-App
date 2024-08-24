@@ -57,6 +57,14 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         }
     }
 
+    fun showToolbar(show: Boolean?) {
+        if (show == true) {
+            mBinding.clToolbar.visibility = View.VISIBLE
+        } else {
+            mBinding.clToolbar.visibility = View.INVISIBLE
+        }
+    }
+
     fun hideKeyboard() {
         val imm: InputMethodManager =
             getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

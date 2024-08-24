@@ -1,5 +1,6 @@
 package com.paymob.movies.di
 
+import com.paymob.movies.core.DIAnnotation
 import com.paymob.movies.db.local.datastore.DataStoreManager
 import com.paymob.movies.db.local.room.MoviesDao
 import com.paymob.movies.modules.listing.data.api.MoviesWebServices
@@ -13,16 +14,20 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class RepositoryModule {
+class MoviesListingModule {
+
+    @Singleton
+    @Provides
+    fun provideMoviesWebService(@DIAnnotation.MoviesRetrofit retrofit: Retrofit): MoviesWebServices = retrofit.create(MoviesWebServices::class.java)
 
     @Singleton
     @Provides
     fun provideRemoteDataSource(apiInterface: MoviesWebServices): IMoviesRemoteDataSource = MoviesRemoteDataSourceImpl(apiInterface)
-
 
     @Singleton
     @Provides

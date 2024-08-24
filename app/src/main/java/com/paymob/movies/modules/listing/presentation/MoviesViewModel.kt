@@ -9,6 +9,7 @@ import com.paymob.movies.modules.listing.domain.entites.MovieEntity
 import com.paymob.movies.modules.listing.domain.entites.MoviesListingEntity
 import com.paymob.movies.modules.listing.domain.usecases.MoviesListingUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -37,7 +38,11 @@ class MoviesViewModel @Inject constructor(
     }
 
      fun fetchMovies() {
-        viewModelScope.launch {
+
+         viewModelScope.launch {
+             _moviesListingState.value = MoviesListingState.Shimmer(true)
+             delay(2000) // to show shimmer
+
             when (val moviesResult = moviesListingUseCase(moviesParams)) {
                 is ApiResult.Success -> {
                     moviesListingEntity = moviesResult.data
@@ -50,7 +55,9 @@ class MoviesViewModel @Inject constructor(
                     _moviesListingState.value = MoviesListingState.InternetError
                 }
             }
-        }
+
+             _moviesListingState.value = MoviesListingState.Shimmer(false)
+         }
     }
 
     private fun getWishListIds() : List<String> {
@@ -65,7 +72,8 @@ class MoviesViewModel @Inject constructor(
                 item.isFavorite = isExist
             }
         }
-      _moviesListingState.value =
+
+        _moviesListingState.value =
             MoviesListingState.Success(moviesListingEntity?.movies as ArrayList<MovieEntity>)
     }
 

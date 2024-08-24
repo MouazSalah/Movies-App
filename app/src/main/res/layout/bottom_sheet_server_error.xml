@@ -45,7 +45,7 @@
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="We couldn't fetch the currency rates at the moment. Please check your internet connection and try again later."
+                android:text="We couldn't load the movies right now. Please check your internet connection and try again later."
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginHorizontal="12dp"
                 android:textColor="@color/color_dark_grey"

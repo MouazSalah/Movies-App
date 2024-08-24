@@ -5,7 +5,7 @@ import com.paymob.movies.extesnion.isNetworkAvailable
 import com.paymob.movies.db.api.ApiResult
 import com.paymob.movies.db.local.datastore.DataStoreManager
 import com.paymob.movies.modules.details.data.api.MovieDetailsWebServices
-import com.paymob.movies.modules.details.data.mapper.MovieDetailsMapper
+import com.paymob.movies.modules.details.domain.mapper.MovieDetailsMapper
 import com.paymob.movies.modules.details.data.params.MovieDetailsParams
 import com.paymob.movies.modules.details.domain.entity.MovieDetailsEntity
 import com.paymob.movies.modules.details.domain.repository.IMovieDetailsRepository

@@ -17,7 +17,7 @@ class DataStoreManager @Inject constructor(private val context: Context, val gso
         val MOVIES_WISHLIST_IDS = stringPreferencesKey("MOVIES_WISHLIST_IDS")
     }
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "CURRENCY_PREF")
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "MOVIES_PREF")
 
     private fun readPrefStringBlocking(
         key: Preferences.Key<String>,
@@ -42,7 +42,7 @@ class DataStoreManager @Inject constructor(private val context: Context, val gso
         }
     }
 
-    fun saveWishlistList(
+    private fun saveWishlistList(
         list: List<String>,
         coroutineScope: CoroutineScope,
         callBack: (Boolean) -> Unit = {}
