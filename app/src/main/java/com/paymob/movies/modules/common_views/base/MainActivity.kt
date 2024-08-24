@@ -3,6 +3,8 @@ package com.paymob.movies.modules.common_views.base
 import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -22,8 +24,23 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE
+        )
         setContentView(mBinding.root)
         setupNavController()
+    }
+
+    override fun onPause() {
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
+        super.onPause()
+    }
+    override fun onResume() {
+        super.onResume()
+        window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
 
     private fun setupNavController() {
