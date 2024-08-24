@@ -23,14 +23,6 @@ This project is a movie listing application developed as part of the Paymob Mobi
 - **Local Storage:** Room Database
 - **Dependency Injection:** Hilt
 
-### iOS (Swift)
-- **Language:** Swift
-- **Architecture:** MVVM
-- **UI:** UIKit (Storyboard/XIB)
-- **Networking:** URLSession
-- **Image Loading:** SDWebImage
-- **Local Storage:** Core Data
-- **Dependency Injection:** Swift Dependency Injection (if applicable)
 
 ## Project Structure
 
