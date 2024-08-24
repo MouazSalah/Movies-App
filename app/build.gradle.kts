@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -22,6 +24,14 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        buildConfigField("String", "BASE_URL", properties.getProperty("BASE_URL"))
+        buildConfigField("String", "BASE_IMAGES_URL", properties.getProperty("BASE_IMAGES_URL"))
+        buildConfigField("String", "API_KEY", properties.getProperty("API_KEY"))
+        buildConfigField("String", "API_ACCESS_TOKEN", properties.getProperty("API_ACCESS_TOKEN"))
     }
 
     buildTypes {
@@ -66,25 +76,14 @@ android {
             dimension = "default" // Assign the flavor to the dimension
             applicationId = "com.paymob.movies.staging"
             resValue("string", "app_name", "Movies Staging")
-
-            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/movie/\"")
-            buildConfigField("String", "BASE_IMAGES_URL", "\"https://image.tmdb.org/t/p/original\"")
-            buildConfigField("String", "API_KEY", "\"169edd5ba67dab5a976067e49fad78d0\"")
-            buildConfigField("String", "API_ACCESS_TOKEN", "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjllZGQ1YmE2N2RhYjVhOTc2MDY3ZTQ5ZmFkNzhkMCIsIm5iZiI6MTcyNDMwODYyOC4wMTc5ODUsInN1YiI6IjVkZmI4ZjI4ZDFhODkzMDAxMjgyYzNjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3s1nhqNGiwW_izq8fe9tlLBPSqlhGt9UwA4HuElOUmE\"")
-        }
+   }
 
         create("production") {
             dimension = "default" // Assign the flavor to the dimension
             applicationId = "com.paymob.movies"
             resValue("string", "app_name", "Movies")
-
-            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/movie/\"")
-            buildConfigField("String", "BASE_IMAGES_URL", "\"https://image.tmdb.org/t/p/original\"")
-            buildConfigField("String", "API_KEY", "\"169edd5ba67dab5a976067e49fad78d0\"")
-            buildConfigField("String", "API_ACCESS_TOKEN", "\"eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNjllZGQ1YmE2N2RhYjVhOTc2MDY3ZTQ5ZmFkNzhkMCIsIm5iZiI6MTcyNDMwODYyOC4wMTc5ODUsInN1YiI6IjVkZmI4ZjI4ZDFhODkzMDAxMjgyYzNjYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3s1nhqNGiwW_izq8fe9tlLBPSqlhGt9UwA4HuElOUmE\"")
         }
     }
-
 }
 
 dependencies {
