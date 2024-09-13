@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
@@ -18,6 +18,16 @@
         android:theme="@style/Theme.Movies"
         tools:targetApi="31">
         <activity
+            android:name=".modules.common_views.base.MainComposeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main_compose"
+            android:theme="@style/Theme.Movies" />
+        <activity
+            android:name=".modules.details.presentation.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.Movies" />
+        <activity
             android:name=".modules.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.Movies">
@@ -27,13 +37,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".modules.common_views.base.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Movies">
-        </activity>
-
+            android:theme="@style/Theme.Movies" />
         <activity
             android:name=".modules.common_views.nointernet.NoInternetActivity"
             android:exported="false" />

@@ -2,6 +2,13 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
-    alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.hilt) apply false
+    // alias(libs.plugins.safeArgs)
+    //alias(libs.plugins.ksp)
+//   alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
+
+    alias(libs.plugins.hiltAndroid) apply false
+    alias(libs.plugins.kotlinAndroidKsp) apply false
+    alias(libs.plugins.composeCompiler) apply false
+    alias(libs.plugins.kotlinKapt) apply false
 }
