@@ -35,7 +35,7 @@
         </activity>
 
         <activity
-            android:name=".modules.common_views.nointernet.NoInternetActivity"
+            android:name="com.example.ui.theme.common_views.nointernet.NoInternetActivity"
             android:exported="false" />
     </application>
 

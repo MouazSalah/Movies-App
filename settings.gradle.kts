@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Movies"
 include(":app")
+include(":core:ui")

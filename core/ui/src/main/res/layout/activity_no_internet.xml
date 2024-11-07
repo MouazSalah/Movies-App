@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="6dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_no_internet"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:src="@drawable/ic_no_internet"
+        android:layout_marginBottom="@dimen/_16sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:paddingHorizontal="@dimen/_24sdp"
+        android:textColor="@color/color_primary"
+        android:text="No Internet Connection"
+        android:textAlignment="center"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintTop_toBottomOf="@+id/img_no_internet"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_24sdp"
+        android:textColor="@color/color_primary"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="Please ensure you're connected to the internet or Wi-Fi and then try again."
+        android:textAlignment="center"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_retry"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:insetTop="0dp"
+        android:text="Try Again"
+        android:textAllCaps="false"
+        android:insetBottom="0dp"
+        android:minHeight="@dimen/_38sdp"
+        android:paddingHorizontal="@dimen/_36sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

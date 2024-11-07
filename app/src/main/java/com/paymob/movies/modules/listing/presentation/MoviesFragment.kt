@@ -12,13 +12,13 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.paymob.movies.modules.common_views.apierror.BottomSheetServerError
 import com.paymob.movies.extesnion.castToActivity
 import com.paymob.movies.modules.common_views.base.BaseFragment
 import com.paymob.movies.R
 import com.paymob.movies.modules.common_views.base.MainActivity
-import com.paymob.movies.modules.common_views.nointernet.NoInternetActivity
+import com.example.ui.theme.common_views.nointernet.NoInternetActivity
 import com.paymob.movies.databinding.FragmentMoviesBinding
+import com.paymob.movies.modules.common_views.apierror.BottomSheetServerError
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

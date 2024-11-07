@@ -11,12 +11,12 @@ plugins {
 
 android {
     namespace = "com.paymob.movies"
-    compileSdk = 34
+    compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
         applicationId = "com.paymob.movies"
-        minSdk = 21
-        targetSdk = 34
+        minSdk = ProjectConfig.minSdk
+        targetSdk = ProjectConfig.targetSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -175,4 +175,6 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.0")
     ksp("androidx.room:room-compiler:2.5.2")
+
+    implementation(project(":core:ui"))
 }
